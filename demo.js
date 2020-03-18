@@ -4,11 +4,13 @@ $(document).ready(function() {
         $phone = $('#phone'),
         $password = $('#password'),
         $check = $('#check'),
+        $commit = $('#commit-input'),
         num = 0,
         countdown = 6;
 
     var usernameArr = $username.children();
     $userinput = $(usernameArr[1]);
+
     var phoneArr = $phone.children();
     $phoneinput = $(phoneArr[1]);
     var passwordArr = $password.children();
@@ -16,6 +18,9 @@ $(document).ready(function() {
     $passicon = $(passwordArr[2]);
     var checkArr = $check.children();
     $button = $(checkArr[2]);
+    $yanzheng = $(checkArr[1]);
+    decide();
+
     $userinput.focus(function() {
         $(usernameArr[4]).css("display", "block");
         $(usernameArr[2]).css("display", "none");
@@ -24,23 +29,24 @@ $(document).ready(function() {
         $(usernameArr[6]).css("display", "none");
     })
     $userinput.blur(function() {
+
         $(usernameArr[4]).css("display", "none");
         var usertest = /^(?!_)(?!.*?_$)[a-zA-Z0-9_\u4e00-\u9fa5]+$/;
-        console.log(usercount());
         if (usercount() == 0) {
             $(usernameArr[5]).css("display", "block");
 
         } else if (usercount() > 14) {
             $(usernameArr[6]).css("display", "block");
         } else {
-            console.log(usertest.test($userinput.val()));
+            // console.log(usertest.test($userinput.val()));
             if (usertest.test($userinput.val()) == 1) {
-                console.log(usertest.test($userinput.val()));
+                // console.log(usertest.test($userinput.val()));
                 $(usernameArr[3]).css("display", "block");
             } else {
                 $(usernameArr[2]).css("display", "block");
             }
         }
+        decide();
     })
 
     function usercount() {
@@ -83,12 +89,14 @@ $(document).ready(function() {
 
     })
     $phoneinput.blur(function() {
+        console.log($phoneinput.val() != false);
         var phonetest = /^[1][3,4,5,7,8][0-9]{9}$/;
         if (phonetest.test($phoneinput.val()) == 1) {
             $(phoneArr[3]).css("display", "block");
         } else {
             $(phoneArr[2]).css("display", "block");
         }
+        decide();
     })
     $passwordinput.focus(function() {
         $(passwordArr[6]).css("display", "block");
@@ -153,6 +161,7 @@ $(document).ready(function() {
                 }
             }
         }
+        decide();
     })
 
     function passcount() {
@@ -164,6 +173,18 @@ $(document).ready(function() {
             count += getStrLeng(strArr[i]);
         }
         return count;
+    }
+
+    function decide() {
+        if ($(usernameArr[3]).context.attributes.style.value != 'display: none;') {
+            if ($(phoneArr[3]).context.attributes.style.value != 'display: none;') {
+                if ($(passwordArr[3]).context.attributes.style.value != 'display: none;') {
+                    $commit.css("disabled", "");
+                    $commit.css("background", "blue");
+                }
+            }
+        }
+
     }
 
 });
