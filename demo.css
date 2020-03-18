@@ -70,6 +70,7 @@ a {
     font-size: 14px;
     width: 321px;
     color: #000;
+    margin-bottom: 3px;
 }
 
 .username-error {
@@ -80,7 +81,7 @@ a {
     padding-top: 0;
     position: absolute;
     left: 104px;
-    top: 190px;
+    top: 195px;
 }
 
 .success {
@@ -122,6 +123,9 @@ a {
     text-align: center;
     color: #fff;
     font-size: 12px;
+    position: absolute;
+    top: 5px;
+    left: 10px;
 }
 
 .phone {
